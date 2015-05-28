@@ -21,18 +21,12 @@ var port        = process.env.PORT || 3000;
  */
 app.post('/', function(req, res, next){
     var color = req.query.color || '000000';
-    var name = utils.getColorName(color);
-
     var triad = new tinycolor(color);
     triad = triad.triad().map(function(t){ return t.toHexString(); });
 
-    var message = '<div style="display:inline-block;height:20px;width:20px;background:'+triad[0]+'"></div>';
-    message += ' <span style="line-height:20px">';
-    message += name + '</span>';
-    message += "<div></div>";
-    message += '<div style="display:inline-block;height:20px;width:20px;background:'+triad[0]+'"></div>';
-    message += '<div style="display:inline-block;height:20px;width:20px;background:'+triad[1]+'"></div>';
-    message += '<div style="display:inline-block;height:20px;width:20px;background:'+triad[2]+'"></div>';
+    var message = triad[0] + ' *' + utils.getColorName(triad[0]) + '*\n';
+    message += triad[1] + ' *' + utils.getColorName(triad[1]) + '*\n';
+    message += triad[2] + ' *' + utils.getColorName(triad[2]) + '*\n';
 
     var slack = new Slack(config.slack.team, config.slack.token);
     slack.send({
