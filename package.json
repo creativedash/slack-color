@@ -1,0 +1,24 @@
+{
+  "name": "slack-color",
+  "version": "1.0.0",
+  "description": "Slack color helper for designers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/creativedash/slack-color.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/creativedash/slack-color/issues"
+  },
+  "homepage": "https://github.com/creativedash/slack-color",
+  "dependencies": {
+    "express": "^4.12.4",
+    "node-slack": "0.0.7",
+    "tinycolor2": "^1.1.2"
+  }
+}
