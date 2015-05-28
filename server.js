@@ -20,11 +20,8 @@ var port        = process.env.PORT || 3000;
  * Routes
  */
 app.post('/', function(req, res, next){
+    var color = req.body.text ? req.body.text.split(" ")[0] : '000000';
 
-    var command = (req.body.text || "").split(" ")[0];
-    var args    = (req.body.text || "").split(" ").splice(1);
-
-    var color = command || '000000';
     var triad = new tinycolor(color);
     triad = triad.triad().map(function(t){ return t.toHexString(); });
 
