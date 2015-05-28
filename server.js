@@ -20,7 +20,11 @@ var port        = process.env.PORT || 3000;
  * Routes
  */
 app.post('/', function(req, res, next){
-    var color = req.query.color || '000000';
+
+    var command = (req.body.text || "").split(" ")[0];
+    var args    = (req.body.text || "").split(" ").splice(1);
+
+    var color = command || '000000';
     var triad = new tinycolor(color);
     triad = triad.triad().map(function(t){ return t.toHexString(); });
 
@@ -30,13 +34,13 @@ app.post('/', function(req, res, next){
 
     var slack = new Slack(config.slack.team, config.slack.token);
     slack.send({
-        channel: "ui8-v4",
+        channel: req.channel_id,
         text: message,
-        username: "Bot",
+        username: "Colorbot",
         icon_emoji: ":art:"
     });
 
-    return res.send(message);
+    return res.send('Finding colors...');
 });
 
 
