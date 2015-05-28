@@ -3,6 +3,7 @@
  * Module dependencies
  */
 var express     = require('express');
+var parser      = require('body-parser');
 var tinycolor   = require('tinycolor2');
 var Slack       = require('node-slack');
 var config      = require('./lib/config');
@@ -12,8 +13,10 @@ var utils       = require('./lib/utils');
 /**
  * Express settings
  */
-var app         = express();;
+var app         = express();
 var port        = process.env.PORT || 3000;
+app.use(parser.urlencoded({ extended: true }));
+app.use(parser.json());
 
 
 /**
